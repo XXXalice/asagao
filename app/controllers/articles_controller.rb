@@ -17,9 +17,22 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    @article = Article.new(params[:article])
+    if @article.save
+      redirect_to @article, notice: "ニュースを作成しました"
+    else
+      render "new"
+    end
   end
 
   def update
+    @article = Article.find(params[:id])
+    @article.assign_attributes(params[:article])
+    if @article.save
+      redirect_to @article, notice: "ニュースを更新しました"
+    else
+      render "edit"
+    end
   end
 
   def destroy

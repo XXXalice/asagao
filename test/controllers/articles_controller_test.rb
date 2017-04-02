@@ -20,9 +20,36 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "edit" do
-    article = FactroyGirl.create(:article)
+    article = FactoryGirl.create(:article)
     get :edit, id: article
     assert_respose :success
+  end
+
+  test "create" do
+    post :create, article: FactoryGirl.attributes_for(:article)
+    article = Article.order(:id).last
+    assert_redirected_to article
+  end
+
+  test "update" do
+    article = FactoryGirl.create(:article)
+    patch :update, id: article, article: FactoryGirl.attributes_for(:article)
+    assert_redirected_to article
+  end
+
+  test "fail to create" do
+    attrs = FactoryGirl.attributes_for(:article, title: "")
+    post :create, article: attrs
+    assert_response :success
+    assert_template "new"
+  end
+
+  test "fail to update" do
+    attrs = FactoryGirl.attributes_for(:article, body: "")
+    article = FactoryGirl.create(:article)
+    put :update, id: article, article: attrs
+    assert_response :success
+    assert_template "edit"
   end
 
 end
