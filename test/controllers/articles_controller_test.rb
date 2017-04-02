@@ -16,13 +16,13 @@ class ArticlesControllerTest < ActionController::TestCase
 
   test "new" do
     get :new
-    assert_respose :success
+    assert_response :success
   end
 
   test "edit" do
     article = FactoryGirl.create(:article)
     get :edit, id: article
-    assert_respose :success
+    assert_response :success
   end
 
   test "create" do
@@ -50,6 +50,15 @@ class ArticlesControllerTest < ActionController::TestCase
     put :update, id: article, article: attrs
     assert_response :success
     assert_template "edit"
+  end
+
+  test "destroy" do
+    article = FactoryGirl.create(:article)
+    delete :destroy, id: article
+    assert_redirected_to :articles
+    assert_raises(ActiveRecord::RecordNotFound) {
+      Article.find(article.id)
+    }
   end
 
 end
