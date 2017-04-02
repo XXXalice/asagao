@@ -1,0 +1,10 @@
+<% @page_title = "ニュースの編集" %>
+
+<h1><%= @page_title %></h1>
+
+<p><%= link_to "ニュースの詳細に戻る" , @member %></p>
+
+<%= form_for @article do |form| %>
+    <%= render "form" , form: form %>
+    <p><%= form.submit %></p>
+<% end %>

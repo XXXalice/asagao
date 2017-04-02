@@ -14,4 +14,15 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "new" do
+    get :new
+    assert_respose :success
+  end
+
+  test "edit" do
+    article = FactroyGirl.create(:article)
+    get :edit, id: article
+    assert_respose :success
+  end
+
 end
