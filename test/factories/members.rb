@@ -5,5 +5,7 @@ FactoryGirl.define do
     full_name "Yamada Taro"
     sequence(:email) {|n| "taro#{n}@example.com"}
     birthday 30.years.ago
+    password "testpass"
+    password_confirmation "testpass"
   end
 end
