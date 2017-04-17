@@ -35,6 +35,16 @@ class Member < ApplicationRecord
 
   validate :check_email
 
+  validates :password,
+            presence: {
+                on: :create
+            },
+            confirmation: {
+                allow_blank: true
+            }
+
+  attr_accessor :password, :password_confirmation
+
   private
   def check_email
     if email.present?

@@ -13,6 +13,8 @@ ja:
         birthday: 誕生日
         email: メールアドレス
         administrator: 管理者
+        password: パスワード
+        password_confirmation: パスワード（確認）
       article:
         title: タイトル
         body: 本文
