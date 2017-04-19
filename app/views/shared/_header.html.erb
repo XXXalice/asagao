@@ -1,5 +1,11 @@
 <%= image_tag("logo.gif",size:"272x48",alt:"Morning Glory") %>
 
+<% if current_member %>
+  <p class="member">
+    <%= current_member.name %>さん　|
+    <%= link_to "ログアウト", :session, method: :delete, data: { confirm: "ログアウトしますか？" } %>
+  </p>
+<% end %>
 <div class="menubar">
   <%= menu_link_to "TOP",root_path %>
   &nbsp;|&nbsp; <%= menu_link_to "ニュース" , :articles %>
