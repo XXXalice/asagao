@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_member
 
-  def login_reqauired
+  def login_required
     raise Forbidden unless current_member
   end
 end
