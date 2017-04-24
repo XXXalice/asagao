@@ -38,8 +38,8 @@ class Article < ApplicationRecord
   end
 
   class << self
-    def sidebar_articles(num = 5)
-      open.order(released_at: :desc).limit(num)
+    def sidebar_articles(member,num = 5)
+      open.readable_for(member).order(released_at: :desc).limit(num)
     end
   end
 end
