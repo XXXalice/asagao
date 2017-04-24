@@ -14,6 +14,10 @@ class Article < ApplicationRecord
     now = Time.current
     where("released_at <= ? and (? < expired_at or " + "expired_at is null)",now,now)
   }
+
+  scope :readable_for, ->(member) {
+    member ? all : where(member_only: false)
+  }
   def no_expiration
     expired_at.blank?
   end
