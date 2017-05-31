@@ -1,7 +1,11 @@
 require 'test_helper'
+require 'integration_test_helper'
 
 class ManageArticlesTest < ActionDispatch::IntegrationTest
+  include IntegrationTestHelper
+
   test "add an article" do
+    login_as("taro")
     get "/articles/new"
     assert_response :success
 

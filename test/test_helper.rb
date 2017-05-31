@@ -7,4 +7,14 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  private
+  def login_as(name,admin = false)
+    session[:member_id] = FactorGirl.create(:member,name: name,administrator: admin)
+  end
+
+  def logout
+    session.delete(member_id)
+  end
+
 end
